@@ -1,0 +1,34 @@
+ else {
+            for (int i = formule.length-1; i>-1; i--){
+                try{
+                    stack.push(new NodeNumber(Double.parseDouble(formule[i])));
+                } catch (NumberFormatException e){
+                    if (formule[i].charAt(0) <= 'I' && !formule[i].equals("-") && !formule[i].equals("/") && !formule[i].equals("+") && !formule[i].equals("*")){
+                        stack.push(new NodePanel(this.panelMap.get(formule[i])));
+                    }
+                    if(!stack.isEmpty()){
+                        Node node = stack.pop();
+                        if (!stack.isEmpty()){
+                            switch (formule[i]){
+                                case "+", "-", "*":
+                                    stack.push(new NodeOperation(formule[i],node,stack.pop()));
+                                    break;
+
+                                case "/":
+                                    Node node1 = stack.pop();
+                                    if (node1.getValue()==0){
+                                        throw new ArithmeticException("Division par 0");
+                                    }
+                                    stack.push(new NodeOperation(formule[i],node,node1));
+                                    break;
+
+                                default:
+                                    throw new IllegalArgumentException();
+                            }
+                        }
+                    } else{
+                        throw new IndexOutOfBoundsException("problème dans la formule");
+                    }
+                }
+            }
+        }
