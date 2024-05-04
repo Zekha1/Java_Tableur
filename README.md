@@ -1,7 +1,5 @@
 # SAE32_2023 : Aiqussèle 
 
-Groupe de Matthis FAUVET, Lionel MORIN et Héloïse BOUSSON.
-
 Pour compiler :
 >make
 
@@ -10,7 +8,3 @@ Pour compiler :
 
 Pour lancer :
 >make run
-
-<br>
-
-PS : Mettez nous une pas trop mauvaise note svp :)
